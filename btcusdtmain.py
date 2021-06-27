@@ -115,6 +115,6 @@ fig.update_layout(xaxis_rangeslider_visible=False)
 st.write(fig)
 
 st.text("For any question you can text me on ⬇⬇⬇")
-st.title("Twitter : https://twitter.com/deepgrad")
-st.title("Repo : https://github.com/nailcankara/BtcUsdt-Prediction")
+st.write("Twitter : https://twitter.com/deepgrad")
+st.write("Repo : https://github.com/nailcankara/BtcUsdt-Prediction")
 st.text("K-Shape algorithm is used for forecast...")
