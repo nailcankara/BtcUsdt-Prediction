@@ -115,4 +115,5 @@ fig.update_layout(xaxis_rangeslider_visible=False)
 st.write(fig)
 
 st.subheader("For any question Twitter : @deepgrad")
-
+st.subheader("Repo : https://github.com/nailcankara/BtcUsdt-Prediction")
+st.text("K-Shape algorithm is used for forecast...")
