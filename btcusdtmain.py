@@ -63,13 +63,12 @@ predFinal0 = sc.inverse_transform(beforeTrans0)[-12:]
 predFinal1 = sc.inverse_transform(beforeTrans1)[-12:]
 predFinal2 = sc.inverse_transform(beforeTrans2)[-12:]
 
-dataFinal= pd.DataFrame((predFinal0,predFinal1,predFinal2))
+fark = kriptoVerileri.Close.iloc[-1] - dataFinal.iloc[:,0]
+fark = labels[0]*fark[0] + labels[1]*fark[1] + labels[2]*fark[2]
 
-fark = kriptoVerileri.Close.iloc[-2] - dataFinal.iloc[:,0]
-
-dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark[0]
-dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark[1]
-dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark[2]
+dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark
+dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark
+dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark
 
 
 st.title('BTC-USDT PRICE PREDICTION')
