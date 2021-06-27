@@ -106,5 +106,5 @@ fig.add_trace(figLine2)
 fig.update_layout(xaxis_rangeslider_visible=False)
 st.write(fig)
 
-st.write("Twitter : @deepgrad")
+st.write("For any question Twitter : @deepgrad")
 
