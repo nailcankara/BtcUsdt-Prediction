@@ -66,6 +66,7 @@ predFinal2 = sc.inverse_transform(beforeTrans2)[-12:]
 fark = kriptoVerileri.Close.iloc[-1] - dataFinal.iloc[:,0]
 fark = labels[0]*fark[0] + labels[1]*fark[1] + labels[2]*fark[2]
 
+
 dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark
 dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark
 dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark
