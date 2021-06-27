@@ -4,6 +4,5 @@ python-binance
 numpy
 pandas
 plotly
-pickle
 datetime
 sklearn
