@@ -53,25 +53,25 @@ targetArrays = CloseListPred[filteredArrays]
 ksModel2 = KShape(n_clusters=3, n_init=1, random_state=0).fit(targetArrays)
 
 labels = np.unique(ksModel2.labels_, return_counts=True)[1] / np.unique(ksModel2.labels_, return_counts=True)[1].sum()
-predDraws = ksModel2.cluster_centers_[:,72:].reshape(3,12)
+predDraws = ksModel2.cluster_centers_.reshape(3,-1)
 
 
-beforeTrans0 = np.array(list(np.zeros(60)) + list(predDraws[0]))
-beforeTrans1 = np.array(list(np.zeros(60)) + list(predDraws[1]))
-beforeTrans2 = np.array(list(np.zeros(60)) + list(predDraws[2]))
-predFinal0 = sc.inverse_transform(beforeTrans0)[-12:]
-predFinal1 = sc.inverse_transform(beforeTrans1)[-12:]
-predFinal2 = sc.inverse_transform(beforeTrans2)[-12:]
+beforeTrans0 = np.array(list(list(predDraws[0]))
+beforeTrans1 = np.array(list(list(predDraws[1]))
+beforeTrans2 = np.array(list(list(predDraws[2]))
+predFinal0 = sc.inverse_transform(beforeTrans0)
+predFinal1 = sc.inverse_transform(beforeTrans1)
+predFinal2 = sc.inverse_transform(beforeTrans2)
 
 
 dataFinal= pd.DataFrame((predFinal0,predFinal1,predFinal2))
-fark = kriptoVerileri.Close.iloc[-2] - dataFinal.iloc[:,0]
-fark = labels[0]*fark[0] + labels[1]*fark[1] + labels[2]*fark[2]
+#fark = kriptoVerileri.Close.iloc[-2] - dataFinal.iloc[:,0]
+#fark = labels[0]*fark[0] + labels[1]*fark[1] + labels[2]*fark[2]
 
 
-dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark
-dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark
-dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark
+#dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark
+#dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark
+#dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark
 
 
 st.title('BTC-USDT PRICE PREDICTION')
@@ -92,8 +92,8 @@ forLine0 = pd.DataFrame(dataFinal.iloc[0,:].values , columns=["Close"])
 forLine1 = pd.DataFrame(dataFinal.iloc[1,:].values , columns=["Close"])
 forLine2 = pd.DataFrame(dataFinal.iloc[2,:].values , columns=["Close"])
 
-timestamp = datetime.timestamp(kriptoVerileri.Date.iloc[-1])
-timeRange = [datetime.fromtimestamp(timestamp + 300*i) for i in range(1,13)]
+timestamp = datetime.timestamp(kriptoVerileri.Date.iloc[0])
+timeRange = [datetime.fromtimestamp(timestamp + 300*i) for i in range(1,85)]
 
 forLine0["Date"] = timeRange
 forLine1["Date"] = timeRange
