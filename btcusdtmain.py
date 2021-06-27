@@ -38,6 +38,7 @@ client = Client(api_key, api_secret , {"verify": True, "timeout": 20})
 kriptoVerileri = client.get_historical_klines(kripto, Client.KLINE_INTERVAL_5MINUTE, "6 hours ago UTC")    #veri çek
 kriptoVerileri = pd.DataFrame(kriptoVerileri , columns=columns ).drop(columns=gereksiz)
 kriptoVerileri.Date = (kriptoVerileri.Date/1000).apply(datetime.fromtimestamp)
+kriptoVerileri = kriptoVerileri.astype(float , errors = 'ignore')
 kriptoVerileriValue = kriptoVerileri.Close.values
 
 
@@ -64,6 +65,11 @@ predFinal2 = sc.inverse_transform(beforeTrans2)[-12:]
 
 dataFinal= pd.DataFrame((predFinal0,predFinal1,predFinal2))
 
+fark = kriptoVerileri.Close.iloc[-1] - dataFinal.iloc[:,0]
+
+dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark[0]
+dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark[1]
+dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark[2]
 
 
 st.title('BTC-USDT PRICE PREDICTION')
