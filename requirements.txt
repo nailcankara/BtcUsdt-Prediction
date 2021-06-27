@@ -1,0 +1,11 @@
+streamlit
+tslearn
+python-binance
+numpy
+pandas
+plotly
+warnings
+pickle
+datetime
+sklearn
+random
