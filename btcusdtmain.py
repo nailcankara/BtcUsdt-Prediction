@@ -65,7 +65,7 @@ predFinal2 = sc.inverse_transform(beforeTrans2)[-12:]
 
 dataFinal= pd.DataFrame((predFinal0,predFinal1,predFinal2))
 
-fark = kriptoVerileri.Close.iloc[-1] - dataFinal.iloc[:,0]
+fark = kriptoVerileri.Close.iloc[-2] - dataFinal.iloc[:,0]
 
 dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark[0]
 dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark[1]
