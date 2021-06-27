@@ -56,9 +56,9 @@ labels = np.unique(ksModel2.labels_, return_counts=True)[1] / np.unique(ksModel2
 predDraws = ksModel2.cluster_centers_.reshape(3,-1)
 
 
-beforeTrans0 = np.array(list(list(predDraws[0]))
-beforeTrans1 = np.array(list(list(predDraws[1]))
-beforeTrans2 = np.array(list(list(predDraws[2]))
+beforeTrans0 = np.array(list(predDraws[0]))
+beforeTrans1 = np.array(list(predDraws[1]))
+beforeTrans2 = np.array(list(predDraws[2]))
 predFinal0 = sc.inverse_transform(beforeTrans0)
 predFinal1 = sc.inverse_transform(beforeTrans1)
 predFinal2 = sc.inverse_transform(beforeTrans2)
