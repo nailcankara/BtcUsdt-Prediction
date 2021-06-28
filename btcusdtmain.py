@@ -53,7 +53,7 @@ targetArrays = CloseListPred[filteredArrays]
 ksModel2 = KShape(n_clusters=3, n_init=1, random_state=0).fit(targetArrays)
 
 labels = np.unique(ksModel2.labels_, return_counts=True)[1] / np.unique(ksModel2.labels_, return_counts=True)[1].sum()
-predDraws = ksModel2.cluster_centers_.reshape(3,-1)
+predDraws = ksModel2.cluster_centers_[:,:-6].reshape(3,102)
 
 
 beforeTrans0 = np.array(list(predDraws[0]))
@@ -63,16 +63,14 @@ predFinal0 = sc.inverse_transform(beforeTrans0)
 predFinal1 = sc.inverse_transform(beforeTrans1)
 predFinal2 = sc.inverse_transform(beforeTrans2)
 
-
 dataFinal= pd.DataFrame((predFinal0,predFinal1,predFinal2))
-#fark = kriptoVerileri.Close.iloc[-2] - dataFinal.iloc[:,0]
-#fark = labels[0]*fark[0] + labels[1]*fark[1] + labels[2]*fark[2]
 
 
-#dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark
-#dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark
-#dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark
+#fark = kriptoVerileri.Close.iloc[-1] - dataFinal.iloc[:,0]
 
+#dataFinal.iloc[0,:] = dataFinal.iloc[0,:]+fark[0]
+#dataFinal.iloc[1,:] = dataFinal.iloc[1,:]+fark[1]
+#dataFinal.iloc[2,:] = dataFinal.iloc[2,:]+fark[2]
 
 st.title('BTC-USDT PRICE PREDICTION')
 st.button("Refresh")
@@ -93,7 +91,7 @@ forLine1 = pd.DataFrame(dataFinal.iloc[1,:].values , columns=["Close"])
 forLine2 = pd.DataFrame(dataFinal.iloc[2,:].values , columns=["Close"])
 
 timestamp = datetime.timestamp(kriptoVerileri.Date.iloc[0])
-timeRange = [datetime.fromtimestamp(timestamp + 300*i) for i in range(1,85)]
+timeRange = [datetime.fromtimestamp(timestamp + 300*i) for i in range(1,103)]
 
 forLine0["Date"] = timeRange
 forLine1["Date"] = timeRange
@@ -114,8 +112,5 @@ fig.add_trace(figLine2)
 fig.update_layout(xaxis_rangeslider_visible=False)
 st.write(fig)
 
-st.text("For any question you can text me on ⬇⬇⬇")
-st.write("Twitter : https://twitter.com/deepgrad")
-st.write("Repo : https://github.com/nailcankara/BtcUsdt-Prediction")
-st.text("K-Shape algorithm is used for forecast...")
-st.text("The project is currently under development. This is not investment advice.")
+
+
